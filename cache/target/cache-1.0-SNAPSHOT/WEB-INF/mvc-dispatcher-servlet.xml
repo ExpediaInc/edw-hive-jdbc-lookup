@@ -13,9 +13,9 @@
 
     <mvc:annotation-driven />
 	
-    <context:component-scan base-package="com.epam.cache.dao" />
-    <context:component-scan base-package="com.epam.cache.service" />
-    <context:component-scan base-package="com.epam.cache.controller" />
+    <context:component-scan base-package="com.expedia.edw.cache.dao" />
+    <context:component-scan base-package="com.expedia.edw.cache.service" />
+    <context:component-scan base-package="com.expedia.edw.cache.controller" />
 
 	
     <bean id="jsonConverter" 
