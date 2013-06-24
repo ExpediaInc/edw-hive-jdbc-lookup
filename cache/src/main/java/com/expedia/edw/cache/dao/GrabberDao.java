@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.epam.cache.dao;
+package com.expedia.edw.cache.dao;
 
 import java.util.HashMap;
 import java.util.Map;

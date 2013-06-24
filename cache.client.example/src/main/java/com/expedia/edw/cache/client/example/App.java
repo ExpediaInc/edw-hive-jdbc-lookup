@@ -16,9 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.epam.cache.client.example;
+package com.expedia.edw.cache.client.example;
 
-import com.epam.cache.client.CacheClientGson;
+import com.expedia.edw.cache.client.CacheClientGson;
 
 /**
  * @author Illya Yalovyy

@@ -16,9 +16,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.epam.cache.controller;
+package com.expedia.edw.cache.controller;
 
-import com.epam.cache.service.GrabberService;
+import com.expedia.edw.cache.service.GrabberService;
 import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
