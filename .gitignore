@@ -15,3 +15,7 @@ nb-configuration.xml
 *.war
 *.ear
 
+/cache-server/target/
+/spring-rest-ehcache/target/
+/cache-rest-ehcache/target/
+/cache-client/target/
