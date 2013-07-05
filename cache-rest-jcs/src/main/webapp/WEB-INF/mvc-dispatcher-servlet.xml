@@ -16,8 +16,7 @@
     <context:component-scan base-package="com.expedia.edw.cache.dao" />
     <context:component-scan base-package="com.expedia.edw.cache.service" />
     <context:component-scan base-package="com.expedia.edw.cache.controller" />
-
-	
+    
     <bean id="jsonConverter" 
               class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
         <property name="supportedMediaTypes" value="application/json" />
@@ -31,11 +30,11 @@
         </property>
     </bean>
 	
-	
+       
     <!-- settings for connection with data base -->
     <import resource="data.xml" />
 	
     <!-- settings for cache -->
-    <import resource="cache-memcached.xml" />
+    <import resource="cache-jcs.xml" />
 
 </beans>

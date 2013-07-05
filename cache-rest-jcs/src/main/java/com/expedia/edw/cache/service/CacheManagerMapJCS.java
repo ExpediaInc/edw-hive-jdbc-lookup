@@ -18,31 +18,39 @@
  */
 package com.expedia.edw.cache.service;
 
-import com.expedia.edw.cache.dao.GrabberDao;
-import com.google.gson.Gson;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
+import org.apache.jcs.JCS;
+import org.apache.jcs.access.exception.CacheException;
 
 /**
  * @author Illya Yalovyy
  * @author Yaroslav Mykhaylov
  */
-@Service
-public class GrabberServiceImpl implements GrabberService {
+public class CacheManagerMapJCS implements CacheManagerMap {
 
-    private static final Logger logger =
-            Logger.getLogger(GrabberServiceImpl.class);
-    @Autowired
-    private GrabberDao grabberDao;
-    private Gson clientGson = new Gson();
+    private static final org.apache.log4j.Logger logger =
+            org.apache.log4j.Logger.getLogger(CacheManagerMapJCS.class);
+    private JCS cacheProviderJCS;
 
-    @Cacheable(value = "defaultCache")
+    public CacheManagerMapJCS(String cacheRegionName) {
+        try {
+//            JCS.setConfigFilename("WEB-INF/cache.ccf");
+            cacheProviderJCS = JCS.getInstance(cacheRegionName);
+        } catch (CacheException ex) {
+           logger.error(ex);
+        }
+    }
+
     @Override
-    public String getData(String schemaAndDBname, String keyName, String valueName) {
-        logger.info("Generate cache for key: " + schemaAndDBname + keyName + valueName);
-        
-        return clientGson.toJson(grabberDao.getData(schemaAndDBname, keyName, valueName));
+    public Object get(String key) {
+        return cacheProviderJCS.get(key);
+    }
+
+    @Override
+    public void put(String key, Object value) {
+        try {
+            cacheProviderJCS.put(key, value);
+        } catch (CacheException ex) {
+            logger.error("Error put new cache", ex);
+        }
     }
 }

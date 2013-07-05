@@ -7,7 +7,7 @@
   <packaging>pom</packaging>
   <name>edw-hive-jdbc-lookup</name>
     <modules>
-        <module>cache-rest-memcached</module>
+        <module>cache-rest-jcs</module>
         <module>cache.client</module>
         <module>cache.client.example</module>
         <module>udf</module>
