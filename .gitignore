@@ -11,6 +11,7 @@ nb-configuration.xml
 *.class
 
 # Package Files #
+!ehcache.war
 *.jar
 *.war
 *.ear
@@ -21,3 +22,4 @@ nb-configuration.xml
 /cache-client/target/
 /spring-rest-memcached/target/
 /cache-rest-memcached/target/
+/cache-rest-standalone-ehcache/ehcache-decorator/target/
