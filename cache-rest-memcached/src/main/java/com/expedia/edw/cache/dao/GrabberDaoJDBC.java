@@ -40,7 +40,6 @@ public class GrabberDaoJDBC implements GrabberDao {
     @Override
     public Map<String, String> getData(String schemaAndDBname,
             String keyName, String valueName) {
-
         Connection conn = null;
         MapperDictionary mapperDictionary = new MapperDictionary();
         Map<String, String> dictionary = null;

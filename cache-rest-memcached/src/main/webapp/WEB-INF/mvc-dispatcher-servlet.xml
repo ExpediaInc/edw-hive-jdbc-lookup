@@ -36,6 +36,6 @@
     <import resource="data.xml" />
 	
     <!-- settings for cache -->
-    <import resource="ehcache-cache.xml" />
+    <import resource="cache-memcached.xml" />
 
 </beans>

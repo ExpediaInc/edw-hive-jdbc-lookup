@@ -19,9 +19,6 @@
 package com.expedia.edw.cache.controller;
 
 import com.expedia.edw.cache.service.GrabberService;
-import java.util.Map;
-import net.sf.ehcache.CacheManager;
-import net.sf.ehcache.Ehcache;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,15 +45,8 @@ public class CacheControllerRest {
     @ResponseBody
     public String getData(@PathVariable String schemaNameAndTableName,
             @PathVariable String keyName, @PathVariable String valueName) {
-
-        CacheManager cache = CacheManager.getInstance();
-        Ehcache c = cache.getEhcache("myCache");
-       logger.info(c.getName());
-       logger.info(c.getWithLoader("key", c.getRegisteredCacheLoaders().get(0),"k"));
-       logger.info(c.getKeys());
-        for(String cacheName: cache.getCacheNames()){
-            logger.info(cacheName);
-        }
+        
         return grabberService.getData(schemaNameAndTableName, keyName, valueName);
+
     }
 }

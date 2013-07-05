@@ -20,7 +20,6 @@ package com.expedia.edw.cache.service;
 
 import com.expedia.edw.cache.dao.GrabberDao;
 import com.google.gson.Gson;
-import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -37,13 +36,13 @@ public class GrabberServiceImpl implements GrabberService {
             Logger.getLogger(GrabberServiceImpl.class);
     @Autowired
     private GrabberDao grabberDao;
-    
     private Gson clientGson = new Gson();
 
-    @Cacheable("getData")
+    @Cacheable(value = "defaultCache")
     @Override
     public String getData(String schemaAndDBname, String keyName, String valueName) {
-
+        logger.info("Generate cache for key: " + schemaAndDBname + keyName + valueName);
+        
         return clientGson.toJson(grabberDao.getData(schemaAndDBname, keyName, valueName));
     }
 }

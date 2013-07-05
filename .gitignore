@@ -19,3 +19,5 @@ nb-configuration.xml
 /spring-rest-ehcache/target/
 /cache-rest-ehcache/target/
 /cache-client/target/
+/spring-rest-memcached/target/
+/cache-rest-memcached/target/
