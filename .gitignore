@@ -6,7 +6,6 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
-
 # Class Files #
 *.class
 
@@ -16,7 +15,7 @@ nb-configuration.xml
 *.war
 *.ear
 
-/cache-server/target/
+/server/target/
 /spring-rest-ehcache/target/
 /cache-rest-ehcache/target/
 /cache-client/target/

@@ -38,9 +38,7 @@ public class CacheClientGson {
     public Map<String, String> fetchData(String schemaAndTableName, String keyName, String valueName) {
         String reqURL = URL + schemaAndTableName + SEPARATOR + keyName + SEPARATOR + valueName;
         Gson gson = new Gson();
-        System.out.println(reqURL);
         String json = getHTML(reqURL, "GET");
-        System.out.println(json);
         Map<String, String> map = new HashMap<String, String>();
         map = (Map<String, String>) gson.fromJson(json, map.getClass());
         return map;

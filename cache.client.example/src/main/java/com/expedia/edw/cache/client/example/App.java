@@ -28,7 +28,12 @@ public class App {
 
     public static void main(String[] args) {
         CacheClientGson client = new CacheClientGson();
-        client.setURL("http://localhost:8080/cache/service/get/");
+        /**
+         * where {http://localhost:8080/rest/} - uri for rest cache
+         * {sampleCache1} - region {key} - key for cache whole example:
+         * http://localhost:8080/rest/sampleCache1/key/
+         */
+        client.setURL("http://localhost:8080/rest/sampleCache1/key/");
         System.out.println(client.fetchData("information_schema.CHARACTER_SETS", "CHARACTER_SET_NAME", "MAXLEN"));
     }
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="4.4">
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/package.html">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/rest/resources/package.html">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/soap/package.html">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/package.html">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/Cache.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/Caches.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/Element.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/JAXBContextResolver.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/Statistics.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/Status.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/rest/resources/CacheResource.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/rest/resources/CachesResource.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/rest/resources/ElementResource.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/ServerContext.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/soap/EhcacheWebServiceEndpoint.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/soap/NoSuchCacheException.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/soap/SecurityEnvironmentHandler.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/Cache.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/Caches.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/Element.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/JAXBContextResolver.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/Statistics.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/jaxb/Status.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/rest/resources/CacheResource.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/rest/resources/CachesResource.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/rest/resources/ElementResource.java">
+<error line="2" severity="error" message="Line does not match expected header line of &apos; *  Copyright 2003-2009 Terracotta, Inc.&apos;." source="com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"/>
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/ServerContext.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/soap/EhcacheWebServiceEndpoint.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/soap/NoSuchCacheException.java">
+</file>
+<file name="/Users/yaroslav91/Documents/edw-hive-jdbc-lookup/server/src/main/java/net/sf/ehcache/server/soap/SecurityEnvironmentHandler.java">
+</file>
+</checkstyle>
