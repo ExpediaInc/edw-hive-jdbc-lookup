@@ -25,6 +25,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Illya Yalovyy
@@ -32,18 +34,26 @@ import java.util.Map;
  */
 public class CacheClientGson {
 
-    private String URL;
+    private final Logger LOG = LoggerFactory.getLogger(CacheClientGson.class);
+    private final String TYPE_REQUEST = "GET";
     private static final String SEPARATOR = "/";
+    private Gson gsonClient = new Gson();
+    private String url;
 
     public Map<String, String> fetchData(String schemaAndTableName, String keyName, String valueName) {
-        String reqURL = URL + schemaAndTableName + SEPARATOR + keyName + SEPARATOR + valueName;
-        Gson gson = new Gson();
-        System.out.println(reqURL);
-        String json = getHTML(reqURL, "GET");
-        System.out.println(json);
+        
+        String reqURL = initUrl(schemaAndTableName, keyName, valueName);
+        String data = getHTML(reqURL, TYPE_REQUEST);
+
         Map<String, String> map = new HashMap<String, String>();
-        map = (Map<String, String>) gson.fromJson(json, map.getClass());
+        map = (Map<String, String>) gsonClient.fromJson(data, map.getClass());
+
+
         return map;
+    }
+
+    private String initUrl(String schemaAndTableName, String keyName, String valueName) {
+        return url + schemaAndTableName + SEPARATOR + keyName + SEPARATOR + valueName;
     }
 
     private String getHTML(String urlToRead, String requestType) {
@@ -62,16 +72,16 @@ public class CacheClientGson {
             }
             rd.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Cannot load url " + url, e);
         }
         return result;
     }
 
     public String getURL() {
-        return URL;
+        return url;
     }
 
     public void setURL(String URL) {
-        this.URL = URL;
+        this.url = URL;
     }
 }
