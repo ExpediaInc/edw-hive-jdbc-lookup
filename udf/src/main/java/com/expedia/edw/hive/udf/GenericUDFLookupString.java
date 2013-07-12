@@ -19,15 +19,15 @@
 package com.expedia.edw.hive.udf;
 
 import com.expedia.edw.cache.client.CacheClientGson;
-import java.util.HashMap;
 import java.util.Map;
+import javax.el.PropertyNotFoundException;
+import org.apache.hadoop.hive.conf.HiveConf;
 import org.apache.hadoop.hive.ql.exec.Description;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
 import org.apache.hadoop.hive.ql.exec.UDFArgumentTypeException;
 import org.apache.hadoop.hive.ql.metadata.HiveException;
 import org.apache.hadoop.hive.ql.udf.generic.GenericUDF;
-import org.apache.hadoop.hive.serde.Constants;
 import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;
 import org.apache.hadoop.hive.serde2.objectinspector.PrimitiveObjectInspector;
 import org.apache.hadoop.hive.serde2.objectinspector.primitive.IntObjectInspector;
@@ -51,15 +51,26 @@ public class GenericUDFLookupString extends GenericUDF {
     private static final int PAR_KEY_NAME = 2;
     private static final int PAR_VALUE_NAME = 3;
     private static final int PAR_KEY = 4;
-    private final CacheClientGson client = new CacheClientGson();
+    private static final String HIVE_CONF_CACHE_NAME_URL = "cache.name.url";
+    private final CacheClientGson cacheClient = new CacheClientGson();
     private ObjectInspector keyOI;
-    private Map<String, String> cache;
+    private Map<String, String> cacheData;
     private Text result = new Text();
-
-    ;
-
+    private HiveConf hiveConf;
+    private String CACHE_URL;
+    
     {
-        client.setURL("http://cheledwhdc901.karmalab.net:8080/cache/service/get/");
+        initCacheUrl();
+    }
+    
+    private void initCacheUrl() {
+        hiveConf = new HiveConf();
+        CACHE_URL = hiveConf.get(HIVE_CONF_CACHE_NAME_URL);
+        if (CACHE_URL != null) {
+            cacheClient.setURL(CACHE_URL);
+        } else {
+            throw new PropertyNotFoundException("Not found propery for " + HIVE_CONF_CACHE_NAME_URL);
+        }
     }
 
     @Override
@@ -77,10 +88,14 @@ public class GenericUDFLookupString extends GenericUDF {
 
         }
 
-        String dataSourceName = ((WritableConstantStringObjectInspector) arguments[PAR_DATA_SOURCE_NAME]).getWritableConstantValue().toString();
-        String tableName = ((WritableConstantStringObjectInspector) arguments[PAR_TABLE_NAME]).getWritableConstantValue().toString();
-        String keyName = ((WritableConstantStringObjectInspector) arguments[PAR_KEY_NAME]).getWritableConstantValue().toString();
-        String valueName = ((WritableConstantStringObjectInspector) arguments[PAR_VALUE_NAME]).getWritableConstantValue().toString();
+        String dataSourceName = ((WritableConstantStringObjectInspector) arguments[PAR_DATA_SOURCE_NAME]).
+                getWritableConstantValue().toString();
+        String tableName = ((WritableConstantStringObjectInspector) arguments[PAR_TABLE_NAME]).
+                getWritableConstantValue().toString();
+        String keyName = ((WritableConstantStringObjectInspector) arguments[PAR_KEY_NAME]).
+                getWritableConstantValue().toString();
+        String valueName = ((WritableConstantStringObjectInspector) arguments[PAR_VALUE_NAME]).
+                getWritableConstantValue().toString();
 
         keyOI = arguments[PAR_KEY];
 
@@ -112,7 +127,7 @@ public class GenericUDFLookupString extends GenericUDF {
         }
 
         String key = returnKey(dos[PAR_KEY]);
-        String value = cache.get(key);
+        String value = cacheData.get(key);
 
         if (value == null) {
             value = "";
@@ -140,6 +155,6 @@ public class GenericUDFLookupString extends GenericUDF {
 
     private void populateCache(String dataSourceName, String tableName,
             String keyName, String valueName) {
-        cache = client.fetchData(tableName, keyName, valueName);
+        cacheData = cacheClient.fetchData(tableName, keyName, valueName);
     }
 }
