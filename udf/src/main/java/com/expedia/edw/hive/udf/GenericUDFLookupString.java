@@ -154,6 +154,6 @@ public class GenericUDFLookupString extends GenericUDF {
 
     private void populateCache(String dataSourceName, String tableName,
             String keyName, String valueName) {
-        cacheContext.load(tableName, keyName, valueName);
+        cacheContext.load(dataSourceName + "." + tableName, keyName, valueName);
     }
 }
