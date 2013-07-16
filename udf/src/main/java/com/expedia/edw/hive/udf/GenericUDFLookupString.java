@@ -52,22 +52,21 @@ public class GenericUDFLookupString extends GenericUDF {
     private static final int PAR_VALUE_NAME = 3;
     private static final int PAR_KEY = 4;
     private static final String HIVE_CONF_CACHE_NAME_URL = "cache.name.url";
-    private final CacheClientGson cacheClient = new CacheClientGson();
     private ObjectInspector keyOI;
-    private Map<String, String> cacheData;
     private Text result = new Text();
     private HiveConf hiveConf;
     private String CACHE_URL;
-    
+    private CacheStoreContext cacheContext;
+
     {
         initCacheUrl();
     }
-    
+
     private void initCacheUrl() {
         hiveConf = new HiveConf();
         CACHE_URL = hiveConf.get(HIVE_CONF_CACHE_NAME_URL);
         if (CACHE_URL != null) {
-            cacheClient.setURL(CACHE_URL);
+            cacheContext = new CacheStoreContext(CACHE_URL);
         } else {
             throw new PropertyNotFoundException("Not found propery for " + HIVE_CONF_CACHE_NAME_URL);
         }
@@ -127,7 +126,7 @@ public class GenericUDFLookupString extends GenericUDF {
         }
 
         String key = returnKey(dos[PAR_KEY]);
-        String value = cacheData.get(key);
+        String value = cacheContext.get(key);
 
         if (value == null) {
             value = "";
@@ -155,6 +154,6 @@ public class GenericUDFLookupString extends GenericUDF {
 
     private void populateCache(String dataSourceName, String tableName,
             String keyName, String valueName) {
-        cacheData = cacheClient.fetchData(tableName, keyName, valueName);
+        cacheContext.load(tableName, keyName, valueName);
     }
 }
