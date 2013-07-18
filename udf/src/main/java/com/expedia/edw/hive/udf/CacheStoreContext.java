@@ -25,12 +25,15 @@ import org.slf4j.LoggerFactory;
  * @author Illya Yalovyy
  * @author Yaroslav_Mykhaylov
  */
-public class CacheStoreContext  {
+public class CacheStoreContext {
 
-//    private final Logger LOG = LoggerFactory.getLogger(CacheStoreAdapter.class);
-    private boolean fileMode = false;
+    private final Logger LOG = LoggerFactory.getLogger(CacheStoreContext.class);
     private Strategy manager;
     private String URL;
+
+    public String getURL() {
+        return URL;
+    }
 
     public CacheStoreContext(String URL) {
         this.URL = URL;
@@ -39,25 +42,13 @@ public class CacheStoreContext  {
 
     public void load(String schemaAndTableName, String keyName, String valueName) {
         try {
-            manager.load(schemaAndTableName, keyName, valueName);
-
+             manager.load(schemaAndTableName, keyName, valueName);
         } catch (OutOfMemoryError ex) {
-            this.fileMode = true;
             manager = new FileStrategy(this.URL);
-
-//            LOG.info("Set file strategy load cache");
-
+            LOG.info("Apply file strategy", ex);
             manager.load(schemaAndTableName, keyName, valueName);
 
         }
-    }
-
-    public void setFileMode(boolean fileMode) {
-        this.fileMode = fileMode;
-    }
-
-    public boolean isFileMode() {
-        return fileMode;
     }
 
     public String get(String key) {
